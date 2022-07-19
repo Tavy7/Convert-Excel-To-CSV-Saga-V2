@@ -1,0 +1,43 @@
+Numele fişierului trebuie să fie în formatul următor: P_<data>.xml.
+
+ 
+
+Pentru a importa mai multe plăţi concomitent, repetaţi secvenţa  <Linie>.
+
+Fisierul XML de plăti se poate importa şi prin ecranele "Registru de casa" sau "Jurnal de banca". Aceastã variantă permite asocierea plătilor cu facturile corespunzătoare.
+
+ 
+
+<Plati>
+
+      <Linie>
+
+            <Data>      
+
+            <Numar>
+
+            <Suma>
+
+            <Cont> (cont de trezorerie din clasa 5)
+
+            <ContFurnizor> (opţional)    
+
+            <Explicatie>
+
+            <FacturaID> (opţional - necesar pentru identificarea facturii încasate dacã aceasta a fost importatã dintr-un XML)
+
+            <FacturaNumar> (opţional)    
+
+            <CodFiscal> (opţional)          
+
+      <\Linie>
+
+      <Linie>
+
+      ......      
+
+      <\Linie>
+
+      .......
+
+</ Plati>

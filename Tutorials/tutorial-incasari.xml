@@ -1,0 +1,37 @@
+Numele fişierului trebuie să fie în formatul următor: I_<data>.xml.
+Pentru a importa mai multe încasări concomitent, repetaţi secvenţa  <Linie>.
+Fisierul XML de încasări se poate importa şi prin ecranele "Registru de casa" sau "Jurnal de banca". Această variantă permite asocierea încasărilor cu facturile corespunzătoare.
+
+<Incasari>
+
+      <Linie>
+
+            <Data>      
+
+            <Numar>
+
+            <Suma>
+
+            <Cont> (cont de trezorerie din clasa 5) CONT 5311
+
+                        <ContClient> (opţional)
+
+            <Explicatie>
+
+            <FacturaID> (opţional - necesar pentru identificarea facturii încasate daca aceasta a fost importata dintr-un XML)
+
+            <FacturaNumar> (opţional - permite identificarea facturii dupa număr)
+
+            <CodFiscal> (opţional)
+
+      <\Linie>
+
+      <Linie>
+
+      ......      
+
+      <\Linie>
+
+      .......
+
+</Incasari>

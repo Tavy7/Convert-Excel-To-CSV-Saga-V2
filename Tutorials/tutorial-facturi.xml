@@ -1,0 +1,184 @@
+cont 707
+tva 19%
+
+Numele fişierului trebuie să fie în formatul următor: F_<cod-fiscal>_<numar-factura>_<data-factura>.xml.
+
+ 
+
+Pentru a importa mai multe facturi concomitent, repetaţi secvenţa  <Factura>.
+
+Dacă tag-ul <FurnizorCIF> reprezinta codul fiscal al societăţii, factura se va importa în ecranul "Ieșiri". Altfel, importul se va efectua în ecranul "Intrări".
+
+Puteti obţine un model de XML cu date folosind tipărirea din ecranul "Ieșiri" și alegând opţiunea "Formular PDF" din lista situată în partea superioară a ecranului de tipărire. În folderul TEMP\Facturi se va copia, pe lânga PDF, și XML-ul aferent facturii.
+
+ 
+
+<Facturi>
+
+      <Factura>
+
+            <Antet>
+
+                  <FurnizorNume>   
+
+                  <FurnizorCIF>
+
+                  <FurnizorNrRegCom>
+
+                  <FurnizorCapital>
+
+                  <FurnizorTara>
+
+                  <FurnizorLocalitate>
+
+                  <FurnizorJudet>
+
+
+                  <FurnizorAdresa> 
+
+
+                          <FurnizorTelefon> 
+
+
+                          <FurnizorMail> 
+
+                  <FurnizorBanca>
+
+                  <FurnizorIBAN>
+
+
+                  <FurnizorInformatiiSuplimentare> 
+
+
+                          <GUID_cod_client>(Opțional, codul din aplicația proprie pentru clientul din Saga. Asocierea cu codul intern Saga se va salva în baza de date, pentru identificare ulterioară.) 
+
+
+                          <ClientNume> 
+
+                  <ClientInformatiiSuplimentare>
+
+                  <ClientCIF>
+
+                  <ClientNrRegCom>
+
+                  <ClientJudet>( Se completează codul județului, doar pentru terții din România, de exemplu, AB- pentru județul Alba.)
+
+                  <ClientTara>(Codul țării, de exemplu, FR- pentru Franța).
+
+                  <ClientLocalitate>
+
+                  <ClientAdresa>
+
+                  <ClientBanca>
+
+                  <ClientIBAN>
+
+                  <ClientTelefon>
+
+                  <ClientMail>
+
+                  <FacturaNumar>
+
+                  <FacturaData>
+
+                  <FacturaScadenta>
+
+                  <FacturaTaxareInversa> (Da/Nu)
+
+                  <FacturaTVAIncasare> (Da/Nu)
+
+                  <FacturaTip> (Opţional. Tipul de document din Saga. Ex: '' factură, 'A' aviz, 'B' bon de casa,'T' taxare inversă, 'C' bon de casă cu cod fiscal).
+
+
+                  <FacturaInformatiiSuplimentare> 
+
+
+                          <FacturaMoneda> (Opţional pentru RON) 
+
+                  <FacturaGreutate>
+
+                  <FacturaAccize>(Optional, valoarea accizelor din factură).
+
+
+                   <Cod>(Optional, codul de client sau furnizor din Saga). 
+
+
+                          <FacturaID> (Opţional, ID unic, din aplicatia proprie, pentru identificarea încasării. Asocierea cu ID-ul unic din Saga se salvează in baza de date, pentru identificare ulterioară). 
+
+            </Antet>
+
+            <Detalii>
+
+                  <Continut>
+
+                        <Linie>
+
+                              <LinieNrCrt>
+
+                              <Gestiune>  (Opțional. Doar pentru evidenta cantitativ-valorică. Codul de gestiune.)
+
+                              <Activitate> (Opţional)
+
+                              <Descriere>
+
+                              <CodArticolFurnizor>(Optional, doar pentru evidenta cantitativ-valorică. Reprezintă codul de produs pentru facturile de intrare.)
+
+
+                              <CodArticolClient>(Opțional, doar pentru evidenta cantitativ-valorică. Reprezintă codul de produs pentru facturile de ieșire.) 
+
+
+                                                  <GUID_cod_articol>(Opțional, pentru evidenta cantitativ-valorică. Codul de produs din aplicația proprie. Asocierea cu codul de produs din Saga se salvează in baza de date, pentru identificare ulterioară.) 
+
+
+                                                  <CodBare> 
+
+                              <InformatiiSuplimentare>
+
+                              <UM>
+
+                              <Cantitate>
+
+                              <Pret>
+
+                              <Valoare>
+
+                              <ProcTVA> (opţional)
+
+                              <TVA>
+
+
+                              <Cont> (opţional) 
+
+
+                              <TipDeducere>(Opțional. Doar pentru importul facturilor de intrare. Tipul de deducere pentru TVA si cheltuială. Folosiți indicele 'N50' pentru deductibilitate limitată la 50% sau 'I' pentru nedeductibilitate integrală). 
+
+
+                              <PretVanzare>(Opțional. Doar pentru importul facturilor de intrare. Reprezintă prețul de vanzare al produsului, pentru o gestiune evaluată la preț de vanzare). 
+
+                        </Linie>
+
+                        .......
+
+                        <Linie>
+
+                        .......
+
+                        </Linie>
+
+                  </Continut>
+
+            </Detalii>
+
+      </Factura>
+
+      .......
+
+      <Factura>
+
+            .......
+
+      </Factura>
+
+      .......
+
+</Facturi>
