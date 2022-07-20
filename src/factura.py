@@ -2,14 +2,17 @@ class Factura:
     Valuta = ""
     NumeClient = ""
     CIF = ""
-    Adresa, Judet = ""
-    Data, DataScadenta = ""
-    Serie, Numar, Tip = ""
+    Adresa, Judet = "", ""
+    Data, DataScadenta = "", ""
+    Serie, Numar, Tip = "", "", ""
     Suma = format(float(0), '.4f')
-    TVA, Total, RestPlata = ""
+    TVA, Total, RestPlata = "", "", ""
     
-    def __reper__(self):
-        return "Client " + str(self.numeClient) + " " + str(self.CIF)
+    def __init__(self):
+        pass
+
+    def __repr__(self):
+        return f"Client {self.NumeClient} {self.CIF}. Suma {self.Total}"
 
     def setValuta(self, valuta):
         self.Valuta = valuta
@@ -26,7 +29,7 @@ class Factura:
     def setDataScadenta(self, dataScadenta):
         self.DataScadenta = dataScadenta
     
-    def setAdresaJudet(self, adresa, judet):
+    def setAdresaJudet(self, adresa, judet=""):
         self.Adresa = adresa
         self.Judet = judet
 
@@ -50,4 +53,9 @@ class Factura:
 
     def setRestDePlata(self, restDePlata):
         self.RestPlata = restDePlata
-    
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()
