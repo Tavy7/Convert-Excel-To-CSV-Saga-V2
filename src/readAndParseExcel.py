@@ -1,8 +1,13 @@
+from ast import Return
+import re
 import xlrd
+import var
 from factura import Factura
+from incasare import Incasare
+from search_firm import search_firm
 
 def convert_xldate_to_date(xldate):
-    xlrd.xldate_as_datetime(xldate, 0)
+    return xlrd.xldate_as_datetime(xldate, 0)
 
 def checkXLDate(date):
     if (date.ctype == xlrd.XL_CELL_DATE):
@@ -26,7 +31,7 @@ def getExcelRows(numeExcel):
 
             emptyCnt = 0
             noValueCnt = 0
-            headerRow = {'CLIENT', 'CIF', 'ADRESA', 'OBSERVATII'}
+            headerRow = {'CLIENT', 'CIF', 'ADRESA', 'OBSERVATII', 'VALUTA'}
             for item in row:
                 text = str(item.value).upper()
                 if (text in headerRow):
@@ -50,6 +55,25 @@ def getExcelRows(numeExcel):
 
 def parseRows_Videointerfoane(rows):
     facturi = []
+
+    valid = 0
+    while (valid == 0):
+        try:
+            print("Select furnizor\n1 - Absolut\n2 - Videointerfoane")
+            choice = int(input())
+
+            if (choice not in [1, 2]):
+                print("Input number must be 1 or 2")
+                continue
+            valid = 1
+        except ValueError:
+            print("Enter a number")
+
+    furnizori = var.furnizori
+    furnizor = furnizori['abs']
+    if (choice == 2):
+        furnizor = furnizori['svi']
+
     for row in rows:
         # VIDEOINTERFOANE 
         # numeClient = row[1]
@@ -60,7 +84,7 @@ def parseRows_Videointerfoane(rows):
         # dataScadenta = row[6]
         # tipFactura = row[7]
         # valoareTotala = row[8] 
-        factura = Factura()
+        factura = Factura(furnizor)
         factura.setNumeClient(row[1].value)
         factura.setCIF(row[2].value)
         factura.setAdresaJudet(row[3].value)
@@ -90,7 +114,8 @@ def parseRows_Beauty(rows):
         # suma = row[9]
         # tva = row[10]
         # total = row[11]
-        factura = Factura()
+        furnizor = var.Furnizori["btr"]
+        factura = Factura(furnizor)
         factura.setValuta(row[0])
         factura.setNumeClient(row[1].value)
         factura.setCIF(row[2].value)
@@ -108,6 +133,31 @@ def parseRows_Beauty(rows):
 
         facturi.append(factura)
     return facturi
+
+def parseRows_BeautyChitante(rows):
+    incasari = []
+    for row in rows:
+        # nume = row[1]
+        # data = row[2] - in excel format
+        # facturaID = row[3] 
+        # suma = row[6]
+        cif = ""
+        nume = row[1].value
+        retVal = search_firm(nume)
+        if (retVal != -1):
+            cif = retVal
+
+        data = row[2]
+        data = checkXLDate(data)
+        facturaID = row[3].value
+        suma = row[6].value
+        contBeauty = "5311.2"
+        contClient = "4111"
+        
+        incasare = Incasare(cif, facturaID, data, suma, contBeauty, contClient)
+        incasari.append(incasare)
+
+    return incasari
 
 def main():
     pass

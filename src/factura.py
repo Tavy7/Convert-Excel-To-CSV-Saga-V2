@@ -1,3 +1,5 @@
+from furnizor import Furnizor
+
 class Factura:
     Valuta = ""
     NumeClient = ""
@@ -7,9 +9,10 @@ class Factura:
     Serie, Numar, Tip = "", "", ""
     Suma = format(float(0), '.4f')
     TVA, Total, RestPlata = "", "", ""
+    FFurnizor = None
     
-    def __init__(self):
-        pass
+    def __init__(self, furnizor):
+        self.FFurnizor = furnizor
 
     def __repr__(self):
         return f"Client {self.NumeClient} {self.CIF}. Suma {self.Total}"
@@ -25,6 +28,7 @@ class Factura:
     
     def setData(self, data):
         self.Data = data
+        self.Data = self.Data.replace("/", ".")
     
     def setDataScadenta(self, dataScadenta):
         self.DataScadenta = dataScadenta
